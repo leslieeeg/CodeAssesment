@@ -29,5 +29,18 @@ def one_for size(tables, psize):
 
 return None
 
+#Level 3
+"""
+Goal: Given a party size, return all tables that can seat that many people and are free.
+Results in the tables that allow that many free seating
+"""
+def tables_for_size(tables, party_size):
+  available_tables = [] #empty list for IDs
 
-  
+  for table in tables:
+    if table["occipied"] == False and table["capacity"] >= party_size:#see if free and fits people
+      available_tables.append(table["table_id"])#add table ID to list
+      
+  return available_tables
+
+
