@@ -44,3 +44,31 @@ def tables_for_size(tables, party_size):
   return available_tables
 
 
+# Level 4
+"""
+Goal: Some restaurants can combine two adjacent tables if one table alone isn’t big enough.
+If a single table can’t seat the group, check if two adjacent tables combined have enough capacity.
+Output: A list of all table combinations (single or adjacent pairs) that can seat the party.
+
+"""
+
+def table_with_combos(tables, party_size):
+  valid_combos = [] #list
+  #go through the tables in the list
+  for i in range(len(tables)):
+    table = tables[i]
+
+    if table["capacity"] >= party_size and table["occupied"] == False:
+      valid_combos.append([table["table_id"]]) #current table seat party size
+
+    if i < len(tables) - 1:
+      next_one = tables[i+1]
+      if table["capacity"] + next_one["capacity"] >= party_size:
+        if table["occupied"] == False and next_one["occupied"] == False: # check if both free
+          valid_combos.append([table["table_id"], next_one["table_id"]])
+
+  #give the list
+  return valid_combos
+
+
+
